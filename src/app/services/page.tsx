@@ -14,29 +14,57 @@ import {
   Linkedin,
   Instagram,
   MessageCircle,
+  Shirt,
+  RefreshCw,
+  Palette,
+  Users,
 } from "lucide-react";
 
 const services = [
   {
-    icon: BarChart2,
-    title: "Digital Marketing",
-    desc: "Hyper-targeted campaigns powered by predictive AI. SEO, Paid Ads, and Social Media strategies that convert at scale.",
-    gradient: "from-blue-500 to-cyan-400",
-    glow: "rgba(0,212,255,0.15)",
-    tags: ["SEO Optimization", "Paid Advertising", "Social Media"],
-  },
-  {
     icon: Bot,
     title: "AI Automation",
-    desc: "Custom AI agents, intelligent workflow automation, and CRM integrations that operate 24/7 without human intervention.",
+    desc: "Automate your business operations with intelligent AI systems. Custom AI agents, intelligent workflow automation, and CRM integrations that operate without human intervention. From lead generation to workflow automation—we build systems that work 24/7 for you.",
     gradient: "from-violet-500 to-fuchsia-400",
     glow: "rgba(124,58,237,0.15)",
     tags: ["AI Agents", "Workflow Automation", "CRM Integration"],
   },
   {
+    icon: Palette,
+    title: "Design & Development",
+    desc: "We are providing micro-services from concept to production. Transform your ideas into market-ready products. We provide complete development solutions including tech packs, sampling, and full-scale production support.",
+    gradient: "from-purple-500 to-violet-400",
+    glow: "rgba(168,85,247,0.15)",
+    tags: ["Tech Packs", "Pattern Making", "Sampling"],
+  },
+  {
+    icon: BarChart2,
+    title: "Digital Marketing",
+    desc: "Hyper-targeted campaigns powered by predictive AI. SEO, Paid Ads, and Social Media strategies that convert at scale.Drive traffic, leads, and sales with data-driven digital strategies. We specialize in performance marketing, branding, and growth-focused campaigns.",
+    gradient: "from-blue-500 to-cyan-400",
+    glow: "rgba(0,212,255,0.15)",
+    tags: ["SEO Optimization", "Paid Advertising", "Social Media"],
+  },
+  {
+    icon: Users,
+    title: "On-Demand Remote Talent",
+    desc: "Boost your team instantly with skilled remote professionals. Whether you need temporary support for a project or dedicated remote staff for your office, we provide carefully selected experts to fit your requirements—efficient, reliable, and ready to integrate seamlessly into your workflow.",
+    gradient: "from-orange-500 to-amber-400",
+    glow: "rgba(249,115,22,0.15)",
+    tags: ["Remote Employees", "On-Demand Talent", "Flexible Staffing"],
+  },
+  {
+    icon: Shirt,
+    title: "Apparel Sourceing",
+    desc: "Access premium-quality garments from trusted global manufacturers. We ensure strict quality control, sustainable sourcing, and cost-efficient production tailored to your brand and competitive pricing for fashion brands of all sizes.",
+    gradient: "from-pink-500 to-rose-400",
+    glow: "rgba(244,63,94,0.15)",
+    tags: ["Fabric Sourcing", "Quality Control", "Sustainable Materials"],
+  },
+  {
     icon: Globe,
-    title: "Foreign Trade",
-    desc: "Global sourcing, export/import logistics, and market penetration consulting with data-driven trade intelligence.",
+    title: "Buying & Trading",
+    desc: "Global sourcing, export/import logistics, and market penetration consulting with data-driven trade intelligence.Expand globally with confidence. We handle compliance, documentation, and international market strategy to ensure smooth cross-border business operations.",
     gradient: "from-emerald-400 to-cyan-400",
     glow: "rgba(52,211,153,0.15)",
     tags: ["Import / Export", "Global Sourcing", "Trade Consulting"],
@@ -88,11 +116,10 @@ export default function ServicesPage() {
       </div>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-white/8 shadow-xl shadow-black/20"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-white/8 shadow-xl shadow-black/20"
+          : "bg-transparent"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5 group">
@@ -147,9 +174,8 @@ export default function ServicesPage() {
               {services.map((service, i) => (
                 <Card
                   key={i}
-                  className={`bg-white/[0.025] border-white/10 overflow-hidden group hover:border-primary/50 hover:-translate-y-3 transition-all duration-500 cursor-default ${
-                    servicesRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
+                  className={`bg-white/[0.025] border-white/10 overflow-hidden group hover:border-primary/50 hover:-translate-y-3 transition-all duration-500 cursor-default ${servicesRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                    }`}
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
                   <CardContent className="p-8 relative">
@@ -170,7 +196,7 @@ export default function ServicesPage() {
                       ))}
                     </div>
                     <a href="/contact" className="inline-flex items-center text-sm font-medium text-primary hover:gap-3 transition-all duration-200 group/link">
-                      Learn more <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                      Explore Service <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                     </a>
                   </CardContent>
                 </Card>

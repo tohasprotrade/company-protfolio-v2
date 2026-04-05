@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import {
-  Globe,
   Bot,
   BarChart2,
   ArrowRight,
@@ -25,6 +24,8 @@ import {
   Users,
   DollarSign,
   MapPin,
+  Palette,
+  Shirt,
 } from "lucide-react";
 
 function SparklesIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -74,14 +75,6 @@ const stats = [
 
 const services = [
   {
-    icon: BarChart2,
-    title: "Digital Marketing",
-    desc: "Hyper-targeted campaigns powered by predictive AI. SEO, Paid Ads, and Social Media strategies that convert at scale.",
-    gradient: "from-blue-500 to-cyan-400",
-    glow: "rgba(0,212,255,0.15)",
-    tags: ["SEO Optimization", "Paid Advertising", "Social Media"],
-  },
-  {
     icon: Bot,
     title: "AI Automation",
     desc: "Custom AI agents, intelligent workflow automation, and CRM integrations that operate 24/7 without human intervention.",
@@ -90,12 +83,20 @@ const services = [
     tags: ["AI Agents", "Workflow Automation", "CRM Integration"],
   },
   {
-    icon: Globe,
-    title: "Foreign Trade",
-    desc: "Global sourcing, export/import logistics, and market penetration consulting with data-driven trade intelligence.",
-    gradient: "from-emerald-400 to-cyan-400",
-    glow: "rgba(52,211,153,0.15)",
-    tags: ["Import / Export", "Global Sourcing", "Trade Consulting"],
+    icon: Palette,
+    title: "Design & Development",
+    desc: "Professional fashion design services from concept to production. Tech packs, sampling, pattern making, and full manufacturing support.",
+    gradient: "from-purple-500 to-violet-400",
+    glow: "rgba(168,85,247,0.15)",
+    tags: ["Tech Packs", "Pattern Making", "Sampling"],
+  },
+  {
+    icon: Shirt,
+    title: "Apparel Sourceing",
+    desc: "Access premium-quality garments from trusted global manufacturers. We ensure strict quality control, sustainable sourcing, and cost-efficient production tailored to your brand and competitive pricing for fashion brands of all sizes.",
+    gradient: "from-pink-500 to-rose-400",
+    glow: "rgba(244,63,94,0.15)",
+    tags: ["Fabric Sourcing", "Quality Control", "Sustainable Materials"],
   },
 ];
 
@@ -301,11 +302,10 @@ export default function Home() {
 
       {/* === NAVBAR === */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-white/8 shadow-xl shadow-black/20"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-white/8 shadow-xl shadow-black/20"
+          : "bg-transparent"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5 group">
@@ -404,9 +404,8 @@ export default function Home() {
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className={`flex flex-col items-center justify-center p-8 rounded-2xl bg-white/[0.025] border border-white/8 backdrop-blur-sm hover:border-primary/40 hover:bg-primary/5 transition-all duration-500 group cursor-default ${
-                    aboutRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                  }`}
+                  className={`flex flex-col items-center justify-center p-8 rounded-2xl bg-white/[0.025] border border-white/8 backdrop-blur-sm hover:border-primary/40 hover:bg-primary/5 transition-all duration-500 group cursor-default ${aboutRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    }`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
                   <stat.icon className="w-6 h-6 text-primary mb-3 group-hover:drop-shadow-[0_0_8px_rgba(0,212,255,0.8)] transition-all" />
@@ -469,9 +468,8 @@ export default function Home() {
               {services.map((service, i) => (
                 <Card
                   key={i}
-                  className={`bg-white/[0.025] border-white/10 overflow-hidden group hover:border-primary/50 hover:-translate-y-3 transition-all duration-500 cursor-default ${
-                    servicesRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
+                  className={`bg-white/[0.025] border-white/10 overflow-hidden group hover:border-primary/50 hover:-translate-y-3 transition-all duration-500 cursor-default ${servicesRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                    }`}
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
                   <CardContent className="p-8 relative">
@@ -518,9 +516,8 @@ export default function Home() {
               {portfolio.map((item, i) => (
                 <div
                   key={i}
-                  className={`p-8 rounded-2xl bg-white/[0.025] border border-white/10 hover:border-primary/40 hover:-translate-y-1 transition-all duration-500 group ${
-                    portfolioRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  }`}
+                  className={`p-8 rounded-2xl bg-white/[0.025] border border-white/10 hover:border-primary/40 hover:-translate-y-1 transition-all duration-500 group ${portfolioRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -598,9 +595,8 @@ export default function Home() {
               {testimonials.map((t, i) => (
                 <div
                   key={i}
-                  className={`p-8 rounded-2xl bg-white/[0.025] border border-white/10 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 ${
-                    testimonialsRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  }`}
+                  className={`p-8 rounded-2xl bg-white/[0.025] border border-white/10 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 ${testimonialsRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    }`}
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
                   <div className="flex items-center gap-1 mb-5">
@@ -663,11 +659,10 @@ export default function Home() {
               {pricing.map((tier, i) => (
                 <Card
                   key={i}
-                  className={`relative bg-white/[0.025] backdrop-blur-sm overflow-hidden transition-all duration-500 ${
-                    tier.popular
-                      ? "border-primary shadow-[0_0_40px_rgba(0,212,255,0.15)] md:-translate-y-4"
-                      : "border-white/10 hover:border-white/25"
-                  } ${pricingRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  className={`relative bg-white/[0.025] backdrop-blur-sm overflow-hidden transition-all duration-500 ${tier.popular
+                    ? "border-primary shadow-[0_0_40px_rgba(0,212,255,0.15)] md:-translate-y-4"
+                    : "border-white/10 hover:border-white/25"
+                    } ${pricingRef.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
                   {tier.popular && (
@@ -695,11 +690,10 @@ export default function Home() {
                     </ul>
                     <a href="/contact">
                       <Button
-                        className={`w-full font-semibold h-12 border-none transition-all duration-300 ${
-                          tier.popular
-                            ? "bg-primary hover:bg-primary/90 text-background shadow-[0_0_20px_rgba(0,212,255,0.4)] hover:shadow-[0_0_30px_rgba(0,212,255,0.6)]"
-                            : "bg-white/10 hover:bg-white/20 text-white"
-                        }`}
+                        className={`w-full font-semibold h-12 border-none transition-all duration-300 ${tier.popular
+                          ? "bg-primary hover:bg-primary/90 text-background shadow-[0_0_20px_rgba(0,212,255,0.4)] hover:shadow-[0_0_30px_rgba(0,212,255,0.6)]"
+                          : "bg-white/10 hover:bg-white/20 text-white"
+                          }`}
                       >
                         {tier.cta}
                       </Button>
