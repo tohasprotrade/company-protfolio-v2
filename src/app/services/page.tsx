@@ -18,6 +18,8 @@ import {
   RefreshCw,
   Palette,
   Users,
+  Menu,
+  X,
 } from "lucide-react";
 
 const services = [
@@ -94,6 +96,7 @@ function useInView(threshold = 0.15) {
 
 export default function ServicesPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const servicesRef = useInView(0.1);
 
   useEffect(() => {
@@ -101,6 +104,17 @@ export default function ServicesPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     document.title = "Services — TohasProTrade";
@@ -131,6 +145,14 @@ export default function ServicesPage() {
             </span>
           </a>
 
+          <button
+            className="md:hidden w-10 h-10 flex items-center justify-center text-white"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             {[
               { name: "Services", href: "/services" },
@@ -156,6 +178,59 @@ export default function ServicesPage() {
           </a>
         </div>
       </nav>
+
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="absolute top-0 left-0 w-[280px] h-full bg-[#0a0a0a] border-r border-white/10 p-6 animate-in slide-in-from-left duration-300">
+            <div className="flex items-center justify-between mb-8">
+              <a href="/" className="flex items-center gap-2.5" onClick={() => setMobileMenuOpen(false)}>
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center font-bold text-lg text-background">
+                  T
+                </div>
+                <span className="font-bold text-xl tracking-tight text-white">
+                  TohasProTrade
+                </span>
+              </a>
+              <button
+                className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-4">
+              {[
+                { name: "Services", href: "/services" },
+                { name: "Portfolio", href: "/portfolio" },
+                { name: "Process", href: "/process" },
+                { name: "Pricing", href: "/pricing" },
+                { name: "Contact", href: "/contact" },
+              ].map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors py-2 border-b border-white/5"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-4 bg-primary hover:bg-primary/90 text-background font-semibold px-6 py-3 rounded-lg text-center shadow-[0_0_20px_rgba(0,212,255,0.35)] transition-all duration-300"
+              >
+                Get Started
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
 
       <main className="relative z-10 pt-32 pb-16">
         <section id="services" className="py-16 px-6" ref={servicesRef.ref}>

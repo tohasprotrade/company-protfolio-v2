@@ -10,6 +10,8 @@ import {
   Linkedin,
   Instagram,
   MessageCircle,
+  Menu,
+  X,
 } from "lucide-react";
 
 function useInView(threshold = 0.15) {
@@ -66,12 +68,24 @@ const portfolio = [
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     document.title = "Portfolio — TohasProTrade";
@@ -105,6 +119,14 @@ export default function Portfolio() {
             </span>
           </a>
 
+          <button
+            className="md:hidden w-10 h-10 flex items-center justify-center text-white"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             {["Services", "Portfolio", "Process", "Pricing", "Contact"].map((link) => (
               <a
@@ -124,6 +146,53 @@ export default function Portfolio() {
           </a>
         </div>
       </nav>
+
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="absolute top-0 left-0 w-[280px] h-full bg-[#0a0a0a] border-r border-white/10 p-6 animate-in slide-in-from-left duration-300">
+            <div className="flex items-center justify-between mb-8">
+              <a href="/" className="flex items-center gap-2.5" onClick={() => setMobileMenuOpen(false)}>
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center font-bold text-lg text-background">
+                  T
+                </div>
+                <span className="font-bold text-xl tracking-tight text-white">
+                  TohasProTrade
+                </span>
+              </a>
+              <button
+                className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-4">
+              {["Services", "Portfolio", "Process", "Pricing", "Contact"].map((link) => (
+                <a
+                  key={link}
+                  href={`/${link.toLowerCase()}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors py-2 border-b border-white/5"
+                >
+                  {link}
+                </a>
+              ))}
+              <a
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-4 bg-primary hover:bg-primary/90 text-background font-semibold px-6 py-3 rounded-lg text-center shadow-[0_0_20px_rgba(0,212,255,0.35)] transition-all duration-300"
+              >
+                Get Started
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
 
       <main className="relative z-10 pt-32 pb-28 px-6">
         <div className="max-w-7xl mx-auto">
